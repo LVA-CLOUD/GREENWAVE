@@ -4,8 +4,9 @@
 
 :root {
     --primary: #0A1F44;        /* Azul institucional forte */
+    --primary-dark: #050B1C;   /* Azul ainda mais profundo */
     --secondary: #1E3A8A;      /* Azul moderno */
-    --accent: #2563EB;         /* Azul vibrante para destaque */
+    --accent: #2563EB;         /* Azul vibrante */
     --dark-bg: #0B0F19;        /* Preto elegante */
     --darker-bg: #05070D;      /* Preto profundo */
     --light: #F8FAFC;          /* Branco suave */
@@ -22,6 +23,15 @@ html {
 body {
     font-family: 'Segoe UI', sans-serif;
     background-color: var(--dark-bg);
+    color: var(--light);
+}
+
+a {
+    color: var(--accent);
+    transition: 0.3s;
+}
+
+a:hover {
     color: white;
 }
 
@@ -72,10 +82,10 @@ body {
 ======================= */
 
 .btn-startup {
-    background: linear-gradient(45deg, var(--primary), var(--primary-dark));
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
     border: none;
-    color: black;
-    font-weight: bold;
+    color: white;
+    font-weight: 600;
     padding: 12px 30px;
     border-radius: 30px;
     transition: 0.3s;
@@ -83,7 +93,7 @@ body {
 
 .btn-startup:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 20px var(--primary);
+    box-shadow: 0 0 20px var(--accent);
 }
 
 /* =======================
@@ -112,8 +122,8 @@ section {
 .solution-box:hover,
 .tech-box:hover {
     transform: translateY(-10px);
-    background: rgba(0, 255, 136, 0.08);
-    box-shadow: 0 0 25px rgba(0, 255, 136, 0.3);
+    background: rgba(37, 99, 235, 0.08);
+    box-shadow: 0 0 25px rgba(37, 99, 235, 0.25);
 }
 
 .solution-icon,
@@ -128,8 +138,8 @@ section {
 ======================= */
 
 #numeros {
-    background: linear-gradient(45deg, var(--primary), var(--primary-dark));
-    color: black;
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    color: white;
 }
 
 .counter {
@@ -165,7 +175,7 @@ section {
 }
 
 .stars i {
-    color: var(--primary);
+    color: var(--accent);
     font-size: 18px;
     margin: 0 2px;
 }
@@ -184,17 +194,21 @@ section {
     height: 500px;
     object-fit: cover;
     border-radius: 15px;
+    filter: grayscale(100%) brightness(0.7) contrast(1.1);
+}
+
+/* Se for iframe Google Maps */
+.map-container iframe {
+    width: 100%;
+    height: 500px;
+    border-radius: 15px;
+    filter: grayscale(100%) invert(90%) contrast(90%);
 }
 
 /* =======================
-   FOOTER
+   CONTATO
 ======================= */
 
-footer {
-    background: var(--darker-bg);
-}
-
-/* CONTATO */
 .contact-box {
     background: rgba(255, 255, 255, 0.05);
     padding: 40px;
@@ -216,7 +230,7 @@ footer {
 
 .info-item i {
     font-size: 24px;
-    color: var(--primary);
+    color: var(--accent);
 }
 
 .info-item a {
@@ -226,5 +240,13 @@ footer {
 }
 
 .info-item a:hover {
-    color: var(--primary);
+    color: var(--accent);
+}
+
+/* =======================
+   FOOTER
+======================= */
+
+footer {
+    background: var(--darker-bg);
 }

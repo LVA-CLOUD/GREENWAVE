@@ -35,7 +35,7 @@ const observer = new IntersectionObserver(entries => {
     });
 
 }, {
-    threshold: 0.5 // ativa quando 50% do elemento estiver visível
+    threshold: 0.5 
 });
 
 counters.forEach(counter => {

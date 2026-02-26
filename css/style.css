@@ -1,0 +1,230 @@
+/* =======================
+   VARIÁVEIS GLOBAIS
+======================= */
+
+:root {
+    --primary: #0A1F44;        /* Azul institucional forte */
+    --secondary: #1E3A8A;      /* Azul moderno */
+    --accent: #2563EB;         /* Azul vibrante para destaque */
+    --dark-bg: #0B0F19;        /* Preto elegante */
+    --darker-bg: #05070D;      /* Preto profundo */
+    --light: #F8FAFC;          /* Branco suave */
+}
+
+/* =======================
+   GLOBAL
+======================= */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--dark-bg);
+    color: white;
+}
+
+/* =======================
+   NAVBAR
+======================= */
+
+.navbar {
+    background: rgba(15, 23, 42, 0.9) !important;
+    backdrop-filter: blur(10px);
+    transition: 0.4s;
+}
+
+.navbar.scrolled {
+    background: rgba(2, 6, 23, 0.95) !important;
+}
+
+/* =======================
+   CARROSSEL
+======================= */
+
+.carousel-item {
+    height: 100vh;
+}
+
+.carousel-item img {
+    height: 100vh;
+    object-fit: cover;
+    filter: brightness(40%);
+}
+
+.carousel-caption {
+    bottom: 35%;
+}
+
+.carousel-caption h2 {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.carousel-caption p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* =======================
+   BOTÃO
+======================= */
+
+.btn-startup {
+    background: linear-gradient(45deg, var(--primary), var(--primary-dark));
+    border: none;
+    color: black;
+    font-weight: bold;
+    padding: 12px 30px;
+    border-radius: 30px;
+    transition: 0.3s;
+}
+
+.btn-startup:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px var(--primary);
+}
+
+/* =======================
+   SEÇÕES
+======================= */
+
+section {
+    padding: 80px 0;
+}
+
+/* =======================
+   SERVIÇOS / SOLUÇÕES
+======================= */
+
+.service-box,
+.solution-box,
+.tech-box {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 35px 25px;
+    transition: 0.3s;
+    height: 100%;
+}
+
+.service-box:hover,
+.solution-box:hover,
+.tech-box:hover {
+    transform: translateY(-10px);
+    background: rgba(0, 255, 136, 0.08);
+    box-shadow: 0 0 25px rgba(0, 255, 136, 0.3);
+}
+
+.solution-icon,
+.tech-icon {
+    font-size: 40px;
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+
+/* =======================
+   NÚMEROS
+======================= */
+
+#numeros {
+    background: linear-gradient(45deg, var(--primary), var(--primary-dark));
+    color: black;
+}
+
+.counter {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+/* =======================
+   DEPOIMENTOS
+======================= */
+
+.testimonial {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    border-radius: 15px;
+    transition: 0.3s;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.testimonial:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 25px var(--primary);
+    border: 1px solid var(--primary);
+}
+
+.testimonial-avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary);
+}
+
+.stars i {
+    color: var(--primary);
+    font-size: 18px;
+    margin: 0 2px;
+}
+
+/* =======================
+   MAPA
+======================= */
+
+.map-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.map-container img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+/* =======================
+   FOOTER
+======================= */
+
+footer {
+    background: var(--darker-bg);
+}
+
+/* CONTATO */
+.contact-box {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 40px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+}
+
+.contact-info {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 40px;
+    border-radius: 15px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.info-item i {
+    font-size: 24px;
+    color: var(--primary);
+}
+
+.info-item a {
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.info-item a:hover {
+    color: var(--primary);
+}

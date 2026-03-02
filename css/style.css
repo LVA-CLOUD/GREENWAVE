@@ -17,6 +17,8 @@
     /* Preto profundo */
     --light: #F8FAFC;
     /* Branco suave */
+    --success-green: #198754;
+    /* Verde padrão sucesso */
 }
 
 /* =======================
@@ -28,9 +30,7 @@ html {
 }
 
 body {
-
-    padding-top: 80px;
-
+    padding-top: 70px;
     font-family: 'Segoe UI', sans-serif;
     background-color: var(--dark-bg);
     color: var(--light);
@@ -44,12 +44,10 @@ body {
     width: 100%;
     height: 100%;
     background-color: #000;
-    /* Fundo preto para combinar com o tema */
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 9999;
-    /* Garante que fique acima de tudo */
     transition: opacity 0.8s ease, visibility 0.8s;
 }
 
@@ -71,20 +69,19 @@ body {
 }
 
 .loader-text span {
-    color: #198754;
-    /* Verde do Bootstrap (success) */
+    color: var(--success-green);
 }
 
 .loader-bar {
     width: 0;
     height: 4px;
-    background-color: #198754;
+    background-color: var(--success-green);
     margin: 20px auto 0;
     border-radius: 10px;
     animation: loading 2.5s forwards ease-in-out;
 }
 
-/* Animações */
+/* Animações Globais */
 @keyframes pulse {
 
     0%,
@@ -109,6 +106,20 @@ body {
     }
 }
 
+@keyframes pop {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
 /* Classe para esconder o preloader */
 .loader-finish {
     opacity: 0;
@@ -117,6 +128,7 @@ body {
 
 a {
     color: var(--accent);
+    text-decoration: none;
     transition: 0.3s;
 }
 
@@ -166,7 +178,7 @@ a:hover {
 }
 
 /* =======================
-   BOTÃO
+   BOTÕES E ANIMAÇÕES DE COMPRA
 ======================= */
 
 .btn-startup {
@@ -184,17 +196,27 @@ a:hover {
     box-shadow: 0 0 20px var(--accent);
 }
 
+/* Efeito de Sucesso no Botão "Adicionado" */
+.btn-success-animated {
+    background-color: var(--success-green) !important;
+    border-color: var(--success-green) !important;
+    color: white !important;
+    transform: scale(1.02);
+    transition: all 0.3s ease;
+}
+
+/* Animação de "pulo" no Badge do Carrinho */
+.cart-pop {
+    animation: pop 0.3s ease-out;
+}
+
 /* =======================
-   SEÇÕES
+   SEÇÕES E BOXES
 ======================= */
 
 section {
     padding: 80px 0;
 }
-
-/* =======================
-   SERVIÇOS / SOLUÇÕES
-======================= */
 
 .service-box,
 .solution-box,
@@ -269,22 +291,9 @@ section {
 }
 
 /* =======================
-   MAPA
+   MAPA E CONTATO
 ======================= */
 
-.map-container {
-    max-width: 10000px;
-    margin: 0 auto;
-}
-
-.map-container img {
-    width: 800%;
-    height: 500px;
-    border-radius: 15px;
-    filter: grayscale(50%) brightness(0.7) contrast(1.1);
-}
-
-/* Se for iframe Google Maps */
 .map-container iframe {
     width: 100%;
     height: 500px;
@@ -292,27 +301,19 @@ section {
     filter: grayscale(100%) invert(90%) contrast(90%);
 }
 
-/* =======================
-   CONTATO
-======================= */
-
-.contact-box {
+.contact-box,
+.contact-info {
     background: rgba(255, 255, 255, 0.05);
     padding: 40px;
     border-radius: 15px;
     backdrop-filter: blur(10px);
 }
 
-.contact-info {
-    background: rgba(255, 255, 255, 0.03);
-    padding: 40px;
-    border-radius: 15px;
-}
-
 .info-item {
     display: flex;
     align-items: center;
     gap: 20px;
+    margin-bottom: 15px;
 }
 
 .info-item i {
@@ -320,26 +321,20 @@ section {
     color: var(--accent);
 }
 
-.info-item a {
-    color: white;
-    text-decoration: none;
-    transition: 0.3s;
-}
-
-.info-item a:hover {
-    color: var(--accent);
-}
-
 /* =======================
-   FOOTER
+   LOJA E CARRINHO (OFFCANVAS)
 ======================= */
 
-footer {
-    background: var(--darker-bg);
+.product-card {
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    background: rgba(255, 255, 255, 0.02);
 }
 
-.v2 {
-    color: #05070D;
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3) !important;
+    background: rgba(255, 255, 255, 0.05);
 }
 
 .card-img-top {
@@ -347,61 +342,47 @@ footer {
     object-fit: cover;
 }
 
-.card-img-top {
-    height: 200px;
-    object-fit: cover;
-}
-
-body {
-    padding-top: 70px;
-}
-
-/* Estilos do Carrinho (Offcanvas) */
 .ob-cart {
-    background-color: #1a1a1a;
+    background-color: #0f172a;
+    /* Azul escuro combinando com a Navbar */
     color: white;
-}
-
-.ob-cartList {
-    margin-bottom: 20px;
 }
 
 .cart-item {
-    border-bottom: 1px solid #333;
-    padding: 10px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    padding: 15px 0;
 }
 
-.ob-cartRow {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 5px;
+.ob-cart .cart-item h6 {
+    color: #ffffff;
+    font-weight: 600;
 }
 
 .ob-cartRow--total {
-    border-top: 1px solid #555;
-    padding-top: 10px;
-    font-size: 1.2rem;
-    color: #198754;
+    border-top: 2px solid var(--success-green);
+    padding-top: 15px;
+    font-size: 1.25rem;
+    color: var(--success-green);
+    font-weight: bold;
 }
 
 .ob-btn {
-    background-color: #198754;
+    background-color: var(--success-green);
     color: white;
     border: none;
+    transition: 0.3s;
 }
 
 .ob-btn:hover {
     background-color: #157347;
-    color: white;
+    transform: translateY(-2px);
 }
 
 .ob-btn-outline {
     border: 1px solid #dc3545;
     color: #dc3545;
     background: transparent;
+    transition: 0.3s;
 }
 
 .ob-btn-outline:hover {
@@ -411,20 +392,54 @@ body {
 
 .cart-count {
     position: absolute;
-    top: 0;
-    right: 0;
-    font-size: 0.7rem;
-    padding: 2px 5px;
-    border-radius: 50%;
+    top: -5px;
+    right: -5px;
+    font-size: 0.75rem;
+    font-weight: bold;
 }
 
+/* Ícones de Pagamento */
 .payment-icons i {
-    vertical-align: middle;
     transition: transform 0.3s ease;
+    cursor: help;
 }
 
 .payment-icons i:hover {
     transform: scale(1.2);
     color: #f7931a !important;
-    /* Cor exata do Bitcoin */
+    /* Cor do Bitcoin */
+}
+
+/* =======================
+   FOOTER
+======================= */
+
+footer {
+    background: var(--darker-bg);
+    padding: 50px 0;
+}
+
+.v2 {
+    color: #ffffff;
+}
+
+/* Definição da sua nova classe personalizada */
+.text-auto {
+    color: rgba(255, 255, 255, 0.7) !important;
+    /* Branco com 70% de opacidade */
+}
+
+/* Garante que os títulos e textos dos cards fiquem visíveis no tema escuro */
+.card-body .card-title {
+    color: #ffffff !important;
+}
+
+.card-body .card-text {
+    color: #e0e0e0 !important;
+}
+
+/* Ajuste para o rodapé do card que estava branco */
+.card-footer.bg-white {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
 }

@@ -1,17 +1,15 @@
-// CONTADOR COM INTERSECTION OBSERVER
-
+// ==========================================
+// 1. CONTADOR COM INTERSECTION OBSERVER
+// ==========================================
 const counters = document.querySelectorAll('.counter');
 
 const startCounter = (counter) => {
-
     counter.innerText = '0';
-
     const target = +counter.getAttribute('data-target');
     const increment = target / 40;
 
     const updateCounter = () => {
         const current = +counter.innerText;
-
         if (current < target) {
             counter.innerText = Math.ceil(current + increment);
             setTimeout(updateCounter, 10);
@@ -19,87 +17,126 @@ const startCounter = (counter) => {
             counter.innerText = target;
         }
     };
-
     updateCounter();
 };
 
 const observer = new IntersectionObserver(entries => {
-
     entries.forEach(entry => {
-
         if (entry.isIntersecting) {
             startCounter(entry.target);
-            observer.unobserve(entry.target); // roda só uma vez
+            observer.unobserve(entry.target);
         }
-
     });
+}, { threshold: 0.5 });
 
-}, {
-    threshold: 0.5 
-});
+counters.forEach(counter => observer.observe(counter));
 
-counters.forEach(counter => {
-    observer.observe(counter);
-});
+// ==========================================
+// 2. LÓGICA DO CARRINHO (GREENWAVE)
+// ==========================================
+let cart = [];
 
+const cartList = document.getElementById('cartList');
+const cartEmpty = document.getElementById('cartEmpty');
+const cartSubtotal = document.getElementById('cartSubtotal');
+const cartTotal = document.getElementById('cartTotal');
+const cartBadge = document.getElementById('cartBadge');
 
-        // LÓGICA DO CARRINHO
-        let cart = [];
-        const cartList = document.getElementById('cartList');
-        const cartEmpty = document.getElementById('cartEmpty');
-        const cartSubtotal = document.getElementById('cartSubtotal');
-        const cartTotal = document.getElementById('cartTotal');
-        const cartBadge = document.getElementById('cartBadge');
+function updateCart() {
+    if (!cartList) return; 
+    
+    cartList.innerHTML = '';
+    let subtotal = 0;
 
-        function updateCart() {
-            cartList.innerHTML = '';
-            let subtotal = 0;
-
-            if (cart.length === 0) {
-                cartEmpty.classList.remove('d-none');
-            } else {
-                cartEmpty.classList.add('d-none');
-                cart.forEach((item, index) => {
-                    subtotal += item.price;
-                    const itemElement = document.createElement('div');
-                    itemElement.className = 'cart-item';
-                    itemElement.innerHTML = `
-                        <div>
-                            <h6 class="mb-0 small">${item.name}</h6>
-                            <small class="text-success">R$ ${item.price.toFixed(2)}</small>
-                        </div>
-                        <button class="btn btn-sm btn-outline-danger" onclick="removeItem(${index})">&times;</button>
-                    `;
-                    cartList.appendChild(itemElement);
-                });
-            }
-
-            cartSubtotal.innerText = `R$ ${subtotal.toFixed(2)}`;
-            cartTotal.innerText = `R$ ${subtotal.toFixed(2)}`;
-            cartBadge.innerText = cart.length;
-        }
-
-        function removeItem(index) {
-            cart.splice(index, 1);
-            updateCart();
-        }
-
-        document.querySelectorAll('.btn-add-cart').forEach(button => {
-            button.addEventListener('click', (e) => {
-                const name = e.target.getAttribute('data-name');
-                const price = parseFloat(e.target.getAttribute('data-price'));
-                cart.push({ name, price });
-                updateCart();
-                
-                // Abre o carrinho automaticamente ao adicionar
-                const bsOffcanvas = new bootstrap.Offcanvas(document.getElementById('cartDrawer'));
-                bsOffcanvas.show();
-            });
+    if (cart.length === 0) {
+        cartEmpty?.classList.remove('d-none');
+        if(cartTotal) cartTotal.innerText = `R$ 0,00`;
+        if(cartSubtotal) cartSubtotal.innerText = `R$ 0,00`;
+    } else {
+        cartEmpty?.classList.add('d-none');
+        cart.forEach((item, index) => {
+            subtotal += item.price;
+            const itemElement = document.createElement('div');
+            itemElement.className = 'cart-item d-flex justify-content-between align-items-center mb-3';
+            
+            itemElement.innerHTML = `
+                <div>
+                    <h6 class="mb-0 small fw-bold" style="color: white;">${item.name}</h6>
+                    <small class="text-success">R$ ${item.price.toFixed(2).replace('.', ',')}</small>
+                </div>
+                <button class="btn btn-sm btn-outline-danger border-0" onclick="removeItem(${index})">
+                    <i class="fa-solid fa-trash-can"></i>
+                </button>
+            `;                    
+            cartList.appendChild(itemElement);
         });
+    }
 
-        document.getElementById('btnClearCart').addEventListener('click', () => {
-            cart = [];
-            updateCart();
-        });
+    if (cartSubtotal) cartSubtotal.innerText = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+    if (cartTotal) cartTotal.innerText = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+    if (cartBadge) cartBadge.innerText = cart.length;
+}
 
+function removeItem(index) {
+    cart.splice(index, 1);
+    updateCart();
+}
+
+// Event Listeners para os botões com ANIMAÇÃO
+document.querySelectorAll('.btn-add-cart').forEach(button => {
+    button.addEventListener('click', (e) => {
+        const btn = e.target.closest('.btn-add-cart');
+        const name = btn.getAttribute('data-name');
+        const price = parseFloat(btn.getAttribute('data-price'));
         
+        // Adiciona ao carrinho
+        cart.push({ name, price });
+        updateCart();
+
+        // Efeito Visual no Botão
+        const textoOriginal = btn.innerHTML;
+        btn.classList.add('btn-success-animated');
+        btn.innerHTML = '<i class="fa-solid fa-check me-2"></i>ADICIONADO!';
+        btn.disabled = true;
+
+        // Animação no Badge (pulo)
+        if(cartBadge) {
+            cartBadge.classList.add('cart-pop');
+            setTimeout(() => cartBadge.classList.remove('cart-pop'), 300);
+        }
+
+        // Volta ao estado original
+        setTimeout(() => {
+            btn.classList.remove('btn-success-animated');
+            btn.innerHTML = textoOriginal;
+            btn.disabled = false;
+        }, 1500);
+    });
+});
+
+// Limpar Carrinho
+document.getElementById('btnClearCart')?.addEventListener('click', () => {
+    if(confirm("Deseja limpar todos os itens da cesta?")) {
+        cart = [];
+        updateCart();
+    }
+});
+
+// Checkout via WhatsApp
+document.getElementById('btnCheckout')?.addEventListener('click', () => {
+    if (cart.length === 0) {
+        alert("A sua cesta está vazia!");
+        return;
+    }
+
+    let mensagem = "Olá GreenWave! Gostaria de um orçamento para:\n\n";
+    cart.forEach(item => {
+        mensagem += `• ${item.name} (R$ ${item.price.toFixed(2)})\n`;
+    });
+    
+    const total = cart.reduce((acc, item) => acc + item.price, 0);
+    mensagem += `\n*Total: R$ ${total.toFixed(2)}*`;
+
+    const whatsappLink = `https://wa.me/5500000000000?text=${encodeURIComponent(mensagem)}`;
+    window.open(whatsappLink, '_blank');
+});

@@ -34,7 +34,9 @@ counters.forEach(counter => observer.observe(counter));
 // ==========================================
 // 2. LÓGICA DO CARRINHO (GREENWAVE)
 // ==========================================
-let cart = [];
+
+// --- NOVIDADE: CARREGA DADOS DO LOCALSTORAGE AO INICIAR ---
+let cart = JSON.parse(localStorage.getItem('greenwave_cart')) || [];
 
 const cartList = document.getElementById('cartList');
 const cartEmpty = document.getElementById('cartEmpty');
@@ -44,6 +46,9 @@ const cartBadge = document.getElementById('cartBadge');
 
 function updateCart() {
     if (!cartList) return; 
+    
+    // --- NOVIDADE: SALVA NO LOCALSTORAGE SEMPRE QUE ATUALIZA ---
+    localStorage.setItem('greenwave_cart', JSON.stringify(cart));
     
     cartList.innerHTML = '';
     let subtotal = 0;
@@ -77,6 +82,9 @@ function updateCart() {
     if (cartBadge) cartBadge.innerText = cart.length;
 }
 
+// Chamar uma vez ao carregar a página para mostrar o que já estava salvo
+updateCart();
+
 function removeItem(index) {
     cart.splice(index, 1);
     updateCart();
@@ -89,23 +97,19 @@ document.querySelectorAll('.btn-add-cart').forEach(button => {
         const name = btn.getAttribute('data-name');
         const price = parseFloat(btn.getAttribute('data-price'));
         
-        // Adiciona ao carrinho
         cart.push({ name, price });
         updateCart();
 
-        // Efeito Visual no Botão
         const textoOriginal = btn.innerHTML;
         btn.classList.add('btn-success-animated');
         btn.innerHTML = '<i class="fa-solid fa-check me-2"></i>ADICIONADO!';
         btn.disabled = true;
 
-        // Animação no Badge (pulo)
         if(cartBadge) {
             cartBadge.classList.add('cart-pop');
             setTimeout(() => cartBadge.classList.remove('cart-pop'), 300);
         }
 
-        // Volta ao estado original
         setTimeout(() => {
             btn.classList.remove('btn-success-animated');
             btn.innerHTML = textoOriginal;
@@ -137,6 +141,6 @@ document.getElementById('btnCheckout')?.addEventListener('click', () => {
     const total = cart.reduce((acc, item) => acc + item.price, 0);
     mensagem += `\n*Total: R$ ${total.toFixed(2)}*`;
 
-    const whatsappLink = `https://wa.me/5500000000000?text=${encodeURIComponent(mensagem)}`;
+    const whatsappLink = `https://wa.me/12983090908?text=${encodeURIComponent(mensagem)}`;
     window.open(whatsappLink, '_blank');
 });

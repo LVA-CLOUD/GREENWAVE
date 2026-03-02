@@ -3,13 +3,20 @@
 ======================= */
 
 :root {
-    --primary: #0A1F44;        /* Azul institucional forte */
-    --primary-dark: #050B1C;   /* Azul ainda mais profundo */
-    --secondary: #1E3A8A;      /* Azul moderno */
-    --accent: #2563EB;         /* Azul vibrante */
-    --dark-bg: #0B0F19;        /* Preto elegante */
-    --darker-bg: #05070D;      /* Preto profundo */
-    --light: #F8FAFC;          /* Branco suave */
+    --primary: #0A1F44;
+    /* Azul institucional forte */
+    --primary-dark: #050B1C;
+    /* Azul ainda mais profundo */
+    --secondary: #1E3A8A;
+    /* Azul moderno */
+    --accent: #2563EB;
+    /* Azul vibrante */
+    --dark-bg: #0B0F19;
+    /* Preto elegante */
+    --darker-bg: #05070D;
+    /* Preto profundo */
+    --light: #F8FAFC;
+    /* Branco suave */
 }
 
 /* =======================
@@ -21,9 +28,91 @@ html {
 }
 
 body {
+
+    padding-top: 80px;
+
     font-family: 'Segoe UI', sans-serif;
     background-color: var(--dark-bg);
     color: var(--light);
+}
+
+/* Estilos do Preloader */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    /* Fundo preto para combinar com o tema */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    /* Garante que fique acima de tudo */
+    transition: opacity 0.8s ease, visibility 0.8s;
+}
+
+.preloader-content {
+    text-align: center;
+}
+
+.loader-logo {
+    width: 100px;
+    margin-bottom: 20px;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+.loader-text {
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.loader-text span {
+    color: #198754;
+    /* Verde do Bootstrap (success) */
+}
+
+.loader-bar {
+    width: 0;
+    height: 4px;
+    background-color: #198754;
+    margin: 20px auto 0;
+    border-radius: 10px;
+    animation: loading 2.5s forwards ease-in-out;
+}
+
+/* Animações */
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: 0.7;
+    }
+}
+
+@keyframes loading {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+/* Classe para esconder o preloader */
+.loader-finish {
+    opacity: 0;
+    visibility: hidden;
 }
 
 a {
@@ -59,7 +148,6 @@ a:hover {
 
 .carousel-item img {
     height: 100vh;
-    object-fit: cover;
     filter: brightness(40%);
 }
 
@@ -191,10 +279,9 @@ section {
 
 .map-container img {
     width: 800%;
-    height: 800px;
-    object-fit: cover;
+    height: 500px;
     border-radius: 15px;
-    filter: grayscale(100%) brightness(0.7) contrast(1.1);
+    filter: grayscale(50%) brightness(0.7) contrast(1.1);
 }
 
 /* Se for iframe Google Maps */
@@ -250,7 +337,94 @@ section {
 footer {
     background: var(--darker-bg);
 }
-.v2
-{
+
+.v2 {
     color: #05070D;
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+body {
+    padding-top: 70px;
+}
+
+/* Estilos do Carrinho (Offcanvas) */
+.ob-cart {
+    background-color: #1a1a1a;
+    color: white;
+}
+
+.ob-cartList {
+    margin-bottom: 20px;
+}
+
+.cart-item {
+    border-bottom: 1px solid #333;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ob-cartRow {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.ob-cartRow--total {
+    border-top: 1px solid #555;
+    padding-top: 10px;
+    font-size: 1.2rem;
+    color: #198754;
+}
+
+.ob-btn {
+    background-color: #198754;
+    color: white;
+    border: none;
+}
+
+.ob-btn:hover {
+    background-color: #157347;
+    color: white;
+}
+
+.ob-btn-outline {
+    border: 1px solid #dc3545;
+    color: #dc3545;
+    background: transparent;
+}
+
+.ob-btn-outline:hover {
+    background: #dc3545;
+    color: white;
+}
+
+.cart-count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 0.7rem;
+    padding: 2px 5px;
+    border-radius: 50%;
+}
+
+.payment-icons i {
+    vertical-align: middle;
+    transition: transform 0.3s ease;
+}
+
+.payment-icons i:hover {
+    transform: scale(1.2);
+    color: #f7931a !important;
+    /* Cor exata do Bitcoin */
 }

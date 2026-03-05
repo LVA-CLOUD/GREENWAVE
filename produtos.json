@@ -1,0 +1,39 @@
+[
+  {
+    "nome": "Painel Solar Monocristalino",
+    "preco": 1200,
+    "descricao": "Alta eficiência e garantia de 25 anos",
+    "categoria": "painel",
+    "imagem": "./img/PRODUTOS/PAINEL SOLAR.webp"
+  },
+  {
+    "nome": "Inversor String 5kW",
+    "preco": 3450,
+    "descricao": "Monitoramento Wi-Fi em tempo real",
+    "categoria": "inversor",
+    "imagem": "./img/PRODUTOS/Inversor String 5kW.webp"
+  },
+  {
+    "nome": "Bateria Lítio 5kWh",
+    "preco": 8500,
+    "descricao": "Armazene energia para uso noturno",
+    "categoria": "acessorio",
+    "imagem": "./img/PRODUTOS/Bateria Lítio 5kWh.webp"
+  },
+  {
+    "nome": "Suporte de Montagem para Telhado",
+    "preco": 300,
+    "descricao": "Estrutura resistente para fixação segura",
+    "categoria": "acessorio",
+    "imagem": "./img/PRODUTOS/Suporte de Montagem para Telhado.JPG"
+  },
+  {
+    "nome": "Controlador de Carga Solar",
+    "preco": 450,
+    "descricao": "Proteção contra sobrecarga e descarga profunda",
+    "categoria": "acessorio",
+    "imagem": "./img/PRODUTOS/Controlador de Carga Solar.webp"
+  },
+  {
+  }
+]

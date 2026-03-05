@@ -341,7 +341,7 @@ section {
 ======================= */
 .product-card {
     transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(21, 50, 94, 0.05) !important;
     background: rgba(255, 255, 255, 0.02);
 }
 
@@ -437,13 +437,16 @@ footer {
 .text-auto {
     color: rgba(255, 255, 255, 0.7) !important;
 }
-
+.card-body {
+background-color: #fbfcff;
+}
 .card-body .card-title {
-    color: #ffffff !important;
+    color: #000000 !important;
 }
 
 .card-body .card-text {
-    color: #e0e0e0 !important;
+    color: #0a0909c0 !important;
+    font-family: sans-serif;
 }
 
 .card-footer.bg-white {
@@ -494,4 +497,114 @@ main {
 .py-4 {
     padding-top: 1.5rem !important;
     padding-bottom: 1.5rem !important;
+}
+
+/* ================================
+   SOLUÇÕES INTELIGENTES - ÍCONES
+================================ */
+
+
+
+/* efeito hover */
+.solution-box:hover .solution-icon {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px rgba(27, 66, 175, 0.7);
+}
+.solution-box{
+    background: rgba(255,255,255,0.03);
+    padding: 30px;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.solution-box:hover{
+    background: rgba(255,255,255,0.06);
+    transform: translateY(-5px);
+}
+
+/* TIMELINE */
+
+.timeline-section{
+background:#f5f7fb;
+}
+
+.timeline{
+position:relative;
+max-width:900px;
+margin:auto;
+}
+
+.timeline::after{
+content:'';
+position:absolute;
+width:4px;
+background:#0A1F44;
+top:0;
+bottom:0;
+left:50%;
+margin-left:-2px;
+}
+
+.timeline-item{
+padding:20px 40px;
+position:relative;
+width:50%;
+}
+
+.timeline-item.left{
+left:0;
+}
+
+.timeline-item.right{
+left:50%;
+}
+
+.timeline-content{
+background:rgb(33, 54, 114);
+padding:20px;
+border-radius:10px;
+box-shadow:0 4px 15px rgba(0,0,0,0.1);
+}
+
+.timeline-content h4{
+color:#0A1F44;
+font-weight:700;
+margin-bottom:10px;
+}
+
+/* bolinha */
+
+.timeline-item::after{
+content:'';
+position:absolute;
+width:18px;
+height:18px;
+right:-9px;
+background:#FFD000;
+border:3px solid #0A1F44;
+top:25px;
+border-radius:50%;
+z-index:1;
+}
+
+.timeline-item.right::after{
+left:-9px;
+}
+#carouselFeedback .carousel-item {
+    transition: transform 1.3s ease-in-out;
+}
+#carouselFeedback p {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s ease forwards;
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.carousel-item {
+    transition: transform 1.2s ease-in-out;
 }
